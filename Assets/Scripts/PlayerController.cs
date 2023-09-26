@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     public float xRange;
     public float yRange;
+    public GameObject Puck;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +43,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Instantiate(Puck, new Vector2(Random.Range(-xRange, xRange), Random.Range(-yRange, yRange), Quaternion.identity));
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
+
+        //Count how many enemies there are in the scene
+        int enemyCount = GameObject.FindGameObjectsWithTag("Puck").Length;
+        Debug.Log("Puck Count: " + enemyCount);
+
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
         Debug.Log(moveHorizontal);
 
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveVertical = Input.GetAxisRaw("Vertical");
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
