@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public float xRange;
     public float yRange;
     public GameObject Puck;
+    public int[] direction = { 0, 1, 2, 3 };
+    public int moveDirection;
+    public float puckSpeed = 5.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,18 +48,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Instantiate(Puck, new Vector2(Random.Range(-xRange, xRange), Random.Range(-yRange, yRange), Quaternion.identity));
+        Instantiate(Puck, new Vector2(Random.Range(-xRange, xRange), Random.Range(-yRange, yRange)), Quaternion.identity);
 
 
         //Count how many enemies there are in the scene
-        int enemyCount = GameObject.FindGameObjectsWithTag("Puck").Length;
-        Debug.Log("Puck Count: " + enemyCount);
+        GameObject[] puckArray;
+        puckArray = GameObject.FindGameObjectsWithTag("Puck");
+        Debug.Log("Puck Count: " + puckArray.Length);
 
+        //Store the current horizontal input in the float moveHorizontal.
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        Debug.Log(moveHorizontal);
-
+        
+        //Store the current vertical input in the float moveVertical.
         float moveVertical = Input.GetAxisRaw("Vertical");
 
+        //Use the two store floats to create a new Vector2 variable movement
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
         transform.Translate(movement * speed * Time.deltaTime);

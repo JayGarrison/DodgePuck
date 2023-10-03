@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4020154608104370344}
   - component: {fileID: 8010303241558286688}
   m_Layer: 0
-  m_Name: Puck1
+  m_Name: Puck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
